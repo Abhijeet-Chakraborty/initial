@@ -14,5 +14,4 @@ public class ExamPortalController {
     private ResponseEntity getMessage(@RequestParam String user) {
         return new ResponseEntity(String.format("Hi User %s!", user), HttpStatus.OK);
     }
-
 }
