@@ -13,5 +13,4 @@ public class InitialApplication {
 		LOGGER.info("Application Started.......");
 		SpringApplication.run(InitialApplication.class, args);
 	}
-
 }
