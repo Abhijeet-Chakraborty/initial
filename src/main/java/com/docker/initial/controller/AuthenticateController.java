@@ -3,16 +3,18 @@ package com.docker.initial.controller;
 import com.docker.initial.configuration.JwtUtils;
 import com.docker.initial.modal.JwtRequest;
 import com.docker.initial.modal.JwtResponse;
+import com.docker.initial.modal.User;
 import com.docker.initial.service.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
+@CrossOrigin("*")
 public class AuthenticateController {
 
     @Autowired
@@ -36,5 +38,11 @@ public class AuthenticateController {
 
     private void authenticate(String username, String password) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    }
+
+    //Returns the details of current user
+    @GetMapping("/current-user")
+    public User getCurrentUser(Principal principal){
+        return (User) this.userDetailService.loadUserByUsername(principal.getName());
     }
 }

@@ -1,5 +1,6 @@
 package com.docker.initial.service;
 
+import com.docker.initial.exception.UserFoundException;
 import com.docker.initial.modal.User;
 import com.docker.initial.modal.UserRole;
 import com.docker.initial.repository.RoleRepository;
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService{
     public User createUser(User user, Set<UserRole> userRoles) {
         var existingUser = userRepository.findByUsername(user.getUsername());
         if(Objects.nonNull(existingUser)) {
-            throw new RuntimeException("User already present!!");
+            throw new UserFoundException();
         } else {
             userRoles.forEach(userRole -> {
                 roleRepository.save(userRole.getRole());
