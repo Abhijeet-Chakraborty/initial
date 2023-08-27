@@ -1,8 +1,5 @@
 package com.docker.initial;
 
-import com.docker.initial.modal.Role;
-import com.docker.initial.modal.User;
-import com.docker.initial.modal.UserRole;
 import com.docker.initial.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Slf4j
 @SpringBootApplication
