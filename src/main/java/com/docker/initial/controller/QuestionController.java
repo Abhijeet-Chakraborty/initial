@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
@@ -38,10 +39,14 @@ public class QuestionController {
     public ResponseEntity<?> getQuestionOfQuiz(@PathVariable("qid") Long qid) {
         var quiz = this.quizService.getQuiz(qid);
         var questions = quiz.getQuestions();
-        List list = new ArrayList(questions);
+        List<Question> list = new ArrayList<>(questions);
         if(list.size() > Integer.parseInt(quiz.getNumberOfQuestions())) {
             list = list.subList(0, Integer.parseInt(quiz.getNumberOfQuestions() + 1));
         }
+        list.forEach(que -> {
+                que.setAnswer("");
+        });
+
         Collections.shuffle(list);
         return ResponseEntity.ok(list);
     }
@@ -50,7 +55,7 @@ public class QuestionController {
     public ResponseEntity<?> getAllQuestionOfQuiz(@PathVariable("qid") Long qid) {
         var quiz = this.quizService.getQuiz(qid);
         var questions = quiz.getQuestions();
-        var list = new ArrayList(questions);
+        var list = new ArrayList<>(questions);
         return ResponseEntity.ok(list);
     }
 
@@ -67,6 +72,16 @@ public class QuestionController {
 
         var response = ResponseObject.builder().body(null)
                 .message("Quiz question is deleted")
+                .status(HttpStatus.OK)
+                .build();
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/eval-quiz")
+    public ResponseEntity<ResponseObject>  evalQuiz(@RequestBody List<Question> questions) {
+        var result = questionService.evalQuiz(questions);
+        var response = ResponseObject.builder().body(result)
+                .message("Quiz evaluation is completed!!")
                 .status(HttpStatus.OK)
                 .build();
         return ResponseEntity.ok(response);
