@@ -2,20 +2,20 @@ package com.docker.initial.modal.exam;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Data
+
 @Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@Getter
+@Setter
 @Table(name = "category")
 public class Category {
 

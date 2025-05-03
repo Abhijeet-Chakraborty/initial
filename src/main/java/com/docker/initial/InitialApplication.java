@@ -18,6 +18,7 @@ public class InitialApplication implements CommandLineRunner {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(InitialApplication.class, args);
 	}

@@ -6,11 +6,14 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+
 @Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+//@ToString
+@Getter
+@Setter
 @Table(name = "question")
 
 //@JsonIgnoreProperties(value = "answer", allowSetters = true)

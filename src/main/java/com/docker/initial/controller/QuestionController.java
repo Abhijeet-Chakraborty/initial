@@ -43,9 +43,7 @@ public class QuestionController {
         if(list.size() > Integer.parseInt(quiz.getNumberOfQuestions())) {
             list = list.subList(0, Integer.parseInt(quiz.getNumberOfQuestions() + 1));
         }
-        list.forEach(que -> {
-                que.setAnswer("");
-        });
+        list.forEach(que -> que.setAnswer(""));
 
         Collections.shuffle(list);
         return ResponseEntity.ok(list);

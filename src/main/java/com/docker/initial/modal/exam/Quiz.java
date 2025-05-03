@@ -9,11 +9,14 @@ import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Data
+//@Data
 @Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+//@ToString
 @Table(name = "quiz")
 public class Quiz {
 

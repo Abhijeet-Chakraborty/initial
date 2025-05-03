@@ -1,0 +1,28 @@
+2025-04-27 14:54:57.023  INFO 1 --- [main] com.docker.initial.InitialApplication    : Starting InitialApplication using Java 17.0.2 on 88e6463aaa3b with PID 1 (/app.jar started by root in /)
+2025-04-27 14:54:57.030  INFO 1 --- [main] com.docker.initial.InitialApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-04-27 14:54:58.279  INFO 1 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-27 14:54:58.382  INFO 1 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 5 JPA repository interfaces.
+2025-04-27 14:54:59.249  INFO 1 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-04-27 14:54:59.268  INFO 1 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-27 14:54:59.270  INFO 1 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.69]
+2025-04-27 14:54:59.384  INFO 1 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-27 14:54:59.385  INFO 1 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2286 ms
+2025-04-27 14:54:59.895  INFO 1 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-27 14:54:59.966  INFO 1 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2025-04-27 14:55:00.234  INFO 1 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-04-27 14:55:00.342  INFO 1 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-27 14:55:00.713  INFO 1 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-27 14:55:00.733  INFO 1 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-04-27 14:55:01.646  INFO 1 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-04-27 14:55:01.657  INFO 1 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27 14:55:02.284  WARN 1 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-27 14:55:02.581  INFO 1 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1f2f0109, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@483b0690, org.springframework.security.web.context.SecurityContextPersistenceFilter@5f05c8d6, org.springframework.security.web.header.HeaderWriterFilter@5568c66f, org.springframework.security.web.authentication.logout.LogoutFilter@39f5b723, com.docker.initial.configuration.JwtAuthenticationFilter@2db4ad1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@64942607, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@158ae284, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@687e6293, org.springframework.security.web.session.SessionManagementFilter@2c63762b, org.springframework.security.web.access.ExceptionTranslationFilter@12a470dd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@73a0f2b]
+2025-04-27 14:55:03.870  INFO 1 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
+2025-04-27 14:55:03.960  INFO 1 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-04-27 14:55:03.985  INFO 1 --- [main] com.docker.initial.InitialApplication    : Started InitialApplication in 7.554 seconds (JVM running for 8.221)
+2025-04-27 14:55:05.603  INFO 1 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-27 14:55:05.604  INFO 1 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-27 14:55:05.608  INFO 1 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-04-27 14:56:23.254  INFO 1 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27 14:56:23.261  INFO 1 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-27 14:56:23.284  INFO 1 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

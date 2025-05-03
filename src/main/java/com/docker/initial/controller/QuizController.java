@@ -4,6 +4,7 @@ import com.docker.initial.modal.ResponseObject;
 import com.docker.initial.modal.exam.Category;
 import com.docker.initial.modal.exam.Quiz;
 import com.docker.initial.service.QuizService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.Set;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/quiz")
+@Slf4j
 public class QuizController {
 
     @Autowired
@@ -21,6 +23,7 @@ public class QuizController {
 
     @PostMapping("/")
     public ResponseEntity<Quiz> addQuiz(@RequestBody Quiz quiz) {
+        //log.info("Quiz Added Successfully - {}", quiz.toString());
         return ResponseEntity.ok(this.quizService.addQuiz(quiz));
     }
 
@@ -36,12 +39,16 @@ public class QuizController {
 
     @GetMapping("{qid}")
     public Quiz getQuiz(@PathVariable("qid") Long qid) {
-        return this.quizService.getQuiz(qid);
+        var quiz = this.quizService.getQuiz(qid);
+        //log.info("Getting Quiz {} for Id {}", quiz, qid);
+        return quiz;
     }
 
     @GetMapping("/")
     public ResponseEntity<Set<Quiz>> getQuizzes() {
-        return ResponseEntity.ok(this.quizService.getQuizzes());
+        var quizzes = this.quizService.getQuizzes();
+        log.info("Quizzes Are - {}", quizzes);
+        return ResponseEntity.ok(quizzes);
     }
 
     @DeleteMapping("/{qid}")

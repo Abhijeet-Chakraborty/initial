@@ -1,0 +1,26 @@
+2025-04-06 20:08:01.029  INFO 13356 --- [main] com.docker.initial.InitialApplication    : Starting InitialApplication using Java 17.0.6 on Hp-Aero with PID 13356 (E:\project\initial\initial\build\classes\java\main started by Abhijeet in E:\project\initial\initial)
+2025-04-06 20:08:01.032  INFO 13356 --- [main] com.docker.initial.InitialApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-04-06 20:08:02.177  INFO 13356 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-06 20:08:02.276  INFO 13356 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 88 ms. Found 5 JPA repository interfaces.
+2025-04-06 20:08:03.149  INFO 13356 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2025-04-06 20:08:03.164  INFO 13356 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-06 20:08:03.164  INFO 13356 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.69]
+2025-04-06 20:08:03.315  INFO 13356 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-06 20:08:03.315  INFO 13356 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2219 ms
+2025-04-06 20:08:03.741  INFO 13356 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-06 20:08:03.818  INFO 13356 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2025-04-06 20:08:04.017  INFO 13356 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-04-06 20:08:04.153  INFO 13356 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-06 20:08:04.492  INFO 13356 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-06 20:08:04.508  INFO 13356 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-04-06 20:08:05.360  INFO 13356 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-04-06 20:08:05.369  INFO 13356 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-06 20:08:05.935  WARN 13356 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-06 20:08:06.182  INFO 13356 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@73483d4b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@8961e55, org.springframework.security.web.context.SecurityContextPersistenceFilter@61627c9d, org.springframework.security.web.header.HeaderWriterFilter@580e01cd, org.springframework.security.web.authentication.logout.LogoutFilter@2c955487, com.docker.initial.configuration.JwtAuthenticationFilter@51eafec0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f986031, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@ef59aee, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@67eabe02, org.springframework.security.web.session.SessionManagementFilter@17e4beda, org.springframework.security.web.access.ExceptionTranslationFilter@7789526e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@58701e8c]
+2025-04-06 20:08:07.333  INFO 13356 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
+2025-04-06 20:08:07.399  INFO 13356 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2025-04-06 20:08:07.414  INFO 13356 --- [main] com.docker.initial.InitialApplication    : Started InitialApplication in 6.852 seconds (JVM running for 7.324)
+2025-04-06 20:08:11.885  INFO 13356 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-06 20:08:11.886  INFO 13356 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-06 20:08:11.887  INFO 13356 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-04-06 20:08:15.573  INFO 13356 --- [http-nio-8081-exec-2] c.d.i.controller.CategoryController      : Categories Are - 
