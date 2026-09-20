@@ -1,29 +1,39 @@
-# Initial Project
+# Initial
 
-A Spring Boot-based quiz management backend with user authentication, role-based access control, quiz/category management, and monitoring support. The project is designed as a learning/demo application for building a REST API for an exam or quiz platform.
+A Spring Boot backend application for managing quizzes, categories, questions, and users with JWT authentication and monitoring support.
+
+[![Java](https://img.shields.io/badge/Java-11-orange.svg)](https://www.oracle.com/java/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.7.6-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![MySQL](https://img.shields.io/badge/MySQL-8-blue.svg)](https://www.mysql.com/)
+[![License](https://img.shields.io/badge/License-Not%20specified-red.svg)]()
 
 ## Overview
 
-This repository contains a backend service for managing:
+This repository contains a backend service designed for an online quiz/exam platform. It includes user registration, JWT-based authentication, role-based access, quiz/category management, and monitoring integrations.
 
-- Users and authentication
-- Roles and authorization
-- Categories
-- Quizzes
-- Questions
-- Monitoring and health endpoints
+The application is built using Java and Spring Boot, with persistence handled through Spring Data JPA and MySQL.
 
-The application uses Spring Boot, Spring Security, JWT, JPA, and MySQL.
+## Features
+
+- User registration and login
+- JWT-based authentication
+- Password hashing with BCrypt
+- Role-based authorization support
+- Quiz management APIs
+- Category and question management
+- Health and metrics exposure via Spring Actuator
+- Prometheus/Grafana/Loki monitoring setup
+- Docker support for containerized deployment
 
 ## Tech Stack
 
 - Java 11
 - Spring Boot 2.7.6
-- Spring Data JPA
 - Spring Web
+- Spring Data JPA
 - Spring Security
-- JWT (jjwt 0.9.0)
-- MySQL 8
+- JWT (`io.jsonwebtoken:jjwt:0.9.0`)
+- MySQL Connector
 - Lombok
 - Springdoc OpenAPI UI
 - Micrometer + Prometheus
@@ -35,18 +45,28 @@ The application uses Spring Boot, Spring Security, JWT, JPA, and MySQL.
 ```text
 .
 ├── Dockerfile
+├── README.md
 ├── build.gradle
 ├── gradlew
 ├── gradlew.bat
 ├── settings.gradle
+├── .gitignore
 ├── gradle/
+│   └── wrapper/
 ├── monitoring/
 │   ├── docker-compose.yml
 │   ├── grafana/
+│   │   └── datasources.yml
 │   ├── loki/
+│   │   └── loki-config.yml
 │   ├── prometheus/
-│   └── promtail/
+│   │   └── prometheus.yml
+│   ├── promtail/
+│   │   └── promtail-config.yml
+│   └── logs/
+│       └── spring.log
 ├── projectlogs/
+│   └── spring.log
 ├── projectlogsquiz.log
 ├── src/
 │   ├── main/
@@ -57,70 +77,30 @@ The application uses Spring Boot, Spring Security, JWT, JPA, and MySQL.
 │   │   │   ├── modal/
 │   │   │   ├── repository/
 │   │   │   ├── service/
-│   │   │   └── InitialApplication.java
+│   │   │   ├── InitialApplication.java
+│   │   │   └── ...
 │   │   └── resources/
 │   │       └── application.properties
-│   └── test/java/com/docker/initial/
-│       └── InitialApplicationTests.java
+│   └── test/
+│       └── java/com/docker/initial/
+│           └── InitialApplicationTests.java
 └── .gitignore
 ```
 
-## Main Features
+## Prerequisites
 
-### 1. Authentication and Authorization
+Before running the project, make sure you have:
 
-The application exposes JWT-based authentication:
-
-- User login via `/generate-token`
-- Current logged-in user details via `/current-user`
-- Spring Security configuration for protected endpoints
-- BCrypt password hashing for user creation
-
-### 2. User Management
-
-Endpoints under `/user`:
-
-- `POST /user/` - Create a new user
-- `GET /user/{username}` - Fetch a user by username
-- `DELETE /user/{userId}` - Delete a user
-
-### 3. Quiz Management
-
-Endpoints under `/quiz`:
-
-- `POST /quiz/` - Add a quiz
-- `PUT /quiz/` - Update a quiz
-- `GET /quiz/{qid}` - Get a quiz by ID
-- `GET /quiz/` - Get all quizzes
-- `DELETE /quiz/{qid}` - Delete a quiz
-- `GET /quiz/category/{cid}` - Get quizzes by category
-- `GET /quiz/active` - Get active quizzes
-- `GET /quiz/category/active/{cid}` - Get active quizzes by category
-
-### 4. Category and Question APIs
-
-The project includes dedicated controller/service layers for categories and questions, allowing:
-
-- Category creation and retrieval
-- Question creation and management
-- Linking questions to quizzes
-
-### 5. Monitoring and Observability
-
-The repository includes monitoring configuration for:
-
-- Prometheus
-- Grafana
-- Loki
-- Promtail
-
-This is configured through the `monitoring` directory and is intended for application metrics and log collection.
+- Java 11+
+- Gradle
+- MySQL installed and running
+- Docker (optional for monitoring/container setup)
 
 ## Database Configuration
 
-The project expects a MySQL database named `exam` running on localhost.
+The application is configured to connect to a MySQL database named `exam` on localhost.
 
-Current configuration in `src/main/resources/application.properties`:
+File: `src/main/resources/application.properties`
 
 ```properties
 server.port=8081
@@ -134,6 +114,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
+
 management.metrics.tags.application=quiz-service
 management.endpoints.web.exposure.include=*
 management.endpoint.health.show-details=always
@@ -141,29 +122,30 @@ logging.file.path=E:/project/logs
 labels.logging=promtail
 ```
 
-## Prerequisites
+## Running the Application
 
-Before running this project, ensure you have:
-
-- Java 11 or later
-- Gradle
-- MySQL server running
-- Docker (optional, for monitoring and containerized execution)
-
-## Run the Application
-
-### Option 1: Run with Gradle
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Abhijeet-Chakraborty/initial.git
 cd initial
+```
+
+### 2. Build the project
+
+```bash
 ./gradlew build
+```
+
+### 3. Start the application
+
+```bash
 ./gradlew bootRun
 ```
 
-The application will start on port `8081` as configured in `application.properties`.
+The app will start on port `8081` by default.
 
-### Option 2: Run with Docker
+## Docker
 
 A Dockerfile is included in the repository.
 
@@ -172,132 +154,156 @@ docker build -t initial .
 docker run -p 8082:8082 initial
 ```
 
-Note: The Dockerfile exposes port `8082`, while the application configuration currently listens on port `8081`.
+Note: The project configuration listens on `8081`, while the Dockerfile exposes `8082`. You may need to align these values depending on your environment.
+
+## Authentication Flow
+
+The project uses Spring Security with JWT tokens.
+
+### Login endpoint
+
+```http
+POST /generate-token
+Content-Type: application/json
+```
+
+Request body:
+
+```json
+{
+  "username": "demouser",
+  "password": "demo123"
+}
+```
+
+Response:
+
+```json
+{
+  "token": "<jwt-token>"
+}
+```
+
+### Current user endpoint
+
+```http
+GET /current-user
+```
+
+This endpoint returns the authenticated user details using the JWT principal.
+
+## API Modules
+
+### User APIs
+
+Base path: `/user`
+
+- `POST /user/` - Create a user
+- `GET /user/{username}` - Fetch a user
+- `DELETE /user/{userId}` - Delete a user
+
+### Quiz APIs
+
+Base path: `/quiz`
+
+- `POST /quiz/` - Add a quiz
+- `PUT /quiz/` - Update a quiz
+- `GET /quiz/{qid}` - Get quiz by ID
+- `GET /quiz/` - Get all quizzes
+- `DELETE /quiz/{qid}` - Delete a quiz
+- `GET /quiz/category/{cid}` - Get quizzes by category
+- `GET /quiz/active` - Get active quizzes
+- `GET /quiz/category/active/{cid}` - Get active quizzes by category
+
+### Category and Question Management
+
+The repository includes additional service and controller layers for:
+
+- categories
+- questions
+- quiz-to-question relationships
 
 ## Swagger / API Documentation
 
-The project includes `springdoc-openapi-ui`, which provides Swagger UI for API exploration.
+The project includes OpenAPI support via `springdoc-openapi-ui`.
 
-Once the application is running, access:
+Once the application is running, open:
 
 ```text
 http://localhost:8081/swagger-ui/index.html
 ```
 
-## Monitoring Setup
+## Monitoring
 
-The monitoring directory contains a Docker Compose setup for observability.
+This repo contains a monitoring setup for observability.
 
-To start monitoring services:
+### Start monitoring stack
 
 ```bash
 cd monitoring
 docker-compose up -d
 ```
 
-This may include:
+Included services:
 
-- Prometheus: app metrics collection
-- Grafana: dashboard visualization
-- Loki: log collection
-- Promtail: log forwarding
+- Prometheus
+- Grafana
+- Loki
+- Promtail
 
-## Authentication Flow
+These files are located under the `monitoring/` directory.
 
-A typical login flow is:
+## Main Components
 
-1. POST request to `/generate-token` with username and password
-2. Server validates credentials using Spring Security
-3. JWT token is generated and returned
-4. The token is used in requests to protected APIs
+### Controllers
 
-Example request body:
+- `AuthenticateController` — JWT login and current user retrieval
+- `UserController` — user operations
+- `QuizController` — quiz CRUD and active/filtered queries
+- `CategoryController` — category functionality
+- `QuestionController` — question functionality
 
-```json
-{
-  "username": "admin",
-  "password": "admin123"
-}
-```
+### Models / Entities
 
-## Sample API Endpoints
+- `User`
+- `Role`
+- `UserRole`
+- `Quiz`
+- `Category`
+- `Question`
+- `JwtRequest`
+- `JwtResponse`
 
-### Generate token
+### Repositories
 
-```http
-POST /generate-token
-Content-Type: application/json
+- `UserRepository`
+- `RoleRepository`
+- `QuizRepository`
+- `CategoryRepository`
+- `QuestionRepository`
 
-{
-  "username": "testuser",
-  "password": "password123"
-}
-```
+### Security
 
-### Create user
+The security layer is configured in the `configuration` package and manages:
 
-```http
-POST /user/
-Content-Type: application/json
-
-{
-  "username": "testuser",
-  "password": "password123",
-  "firstname": "Test",
-  "lastname": "User",
-  "email": "test@example.com",
-  "phone": "1234567890"
-}
-```
-
-### Get all quizzes
-
-```http
-GET /quiz/
-```
+- JWT authentication filter
+- Authentication entry point
+- Security configuration and bean setup
 
 ## Notes
 
-- This project appears to be a backend API for an online quiz/exam system.
-- Many of the entity models follow a conventional JPA design with `Category`, `Quiz`, and `Question` relationships.
-- The codebase is structured around clean separation of layers: controller, service, repository, and model.
-- The project is suitable for learning JWT authentication, Spring Security, and REST API design with Spring Boot.
-
-## Main Dependencies
-
-From `build.gradle`:
-
-```gradle
-implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-implementation 'mysql:mysql-connector-java:8.0.33'
-implementation 'org.springframework.boot:spring-boot-starter-web'
-implementation 'org.springdoc:springdoc-openapi-ui:1.6.15'
-implementation 'org.springframework.boot:spring-boot-starter-security:2.5.7'
-implementation 'io.jsonwebtoken:jjwt:0.9.0'
-implementation 'javax.xml.bind:jaxb-api:2.3.1'
-implementation 'org.springframework.boot:spring-boot-starter-actuator'
-implementation 'io.micrometer:micrometer-registry-prometheus:1.12.9'
-```
-
-## Future Improvements
-
-Possible enhancements for this project include:
-
-- Role-based access restrictions for admin-only endpoints
-- Unit and integration tests for controllers/services
-- Validation annotations on request DTOs
-- Better exception handling and standardized API responses
-- Frontend integration for quiz-taking experience
-- CI/CD pipeline and deployment configuration
+- This project is structured as a Spring Boot REST API for a quiz/exam system.
+- It is suitable for learning purposes and backend API development.
+- Some configuration values are environment-specific, such as MySQL credentials and log paths.
 
 ## License
 
-No explicit license file was found in the repository. If you plan to distribute or reuse this project commercially, it is recommended to add an appropriate OSS license such as MIT or Apache 2.0.
+No explicit license file was found in the repository. If you intend to distribute or reuse this project publicly, it is recommended to add an appropriate open-source license such as MIT or Apache 2.0.
 
-## Repository Summary
+## Summary
 
-This repository is a Spring Boot quiz management application designed around user authentication, quiz operations, and observability. It is well-suited for backend learning, demo projects, and practical API development with Java and Spring Boot.
+`initial` is a Spring Boot-based quiz platform backend with user authentication, database persistence, security, and monitoring support. It is a strong starting point for building a full-stack assessment application.
 
 ---
 
-If you want, I can also create a more polished version of this README specifically tailored for GitHub with badges, screenshots, table of contents, and API examples for your exact project.
+If you want, I can also turn this into a more advanced version with badges, a table of contents, example request/response payloads, and a cleaner architecture diagram.
